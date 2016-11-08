@@ -2,3 +2,22 @@
 # This is a YAML-formatted file.
 # Declare name/value pairs to be passed into your templates.
 # name: value
+
+Master:
+  Name: gerrit-master
+  Image: "openfrontier/gerrit"
+  ImageTag: "latest"
+  ImagePullPolicy: "Always"
+  Component: "gerrit-master"
+  AdminUser: admin
+  AdminPassword: changeme
+  ServicePort: 8080
+  ServiceType: LoadBalancer
+  ContainerPort: 8080
+  SlaveListenerPort: 50000
+
+Persistence:
+  Enabled: false
+  StorageClass: generic
+  AccessMode: ReadWriteOnce
+  Size: 8Gi

@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    heritage: {{.Release.Service | quote }}
+    release: {{.Release.Name | quote }}
+    chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    component: "{{.Release.Name}}-{{.Values.Master.Name}}"
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      component: "{{.Release.Name}}-{{.Values.Master.Component}}"
+  template:
+    metadata:
+      labels:
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        component: "{{.Release.Name}}-{{.Values.Master.Component}}"
+    spec:
+      securityContext:
+        runAsUser: 0
+      containers:
+        - name: {{ template "fullname" . }}
+          image: "{{.Values.Master.Image}}:{{.Values.Master.ImageTag}}"
+          imagePullPolicy: "{{.Values.Master.ImagePullPolicy}}"
+          ports:
+            - containerPort: {{.Values.Master.ContainerPort}}
+              name: http
+            - containerPort: {{.Values.Master.SlaveListenerPort}}
+              name: slavelistener
+          volumeMounts:
+            - mountPath: /var/gerrit/review_site
+              name: gerrit-site
+      volumes:
+      - name: gerrit-site
+      {{- if .Values.Persistence.Enabled }}
+        persistentVolumeClaim:
+          claimName: {{ template "fullname" . }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}
