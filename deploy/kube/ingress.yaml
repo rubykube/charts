@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: devstack
+  name: devstack-charts-repo
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: apps.devstack.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: devstack-charts-repo
+          servicePort: 80
+  tls:
+  - secretName: tls-devstack-com
+    hosts:
+      - apps.devstack.com

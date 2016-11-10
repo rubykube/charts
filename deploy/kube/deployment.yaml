@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devstack-charts-repo
+  namespace: devstack
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devstack-charts
+    spec:
+      containers:
+      - name: dc-repo
+        image: gcr.io/hc-public/devstack-charts/repo:latest
+        command: ["./server"]
+        ports:
+        - containerPort: 8080
