@@ -1,0 +1,7 @@
+name: openldap
+home: http://www.openldap.org/
+version: 0.0.1
+description: A OpenLDAP Helm chart for Kubernetes.
+maintainers:
+  - name: Dimitri Koval
+    email: dkoval@heliostech.fr

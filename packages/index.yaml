@@ -1,7 +1,7 @@
 apiVersion: v1
 entries:
   gerrit:
-  - created: 2016-11-09T14:52:31.92280801+02:00
+  - created: 2016-11-10T18:36:56.104347499+02:00
     description: A Gerrit Helm chart for Kubernetes.
     digest: 6d1df2d1d04ac11c8c85e595027b23dc795c8b490f9c118dce7cbef96aed26f1
     home: https://www.gerritcodereview.com/
@@ -13,7 +13,7 @@ entries:
     - https://apps.devstack.com/gerrit-0.0.1.tgz
     version: 0.0.1
   jenkins:
-  - created: 2016-11-09T14:52:31.92323987+02:00
+  - created: 2016-11-10T18:36:56.104774408+02:00
     description: A Jenkins Helm chart for Kubernetes.
     digest: 14d0921c917b4a1f751e1a3d7eb5a43b217cc14164881f835a6e42f427ef2825
     home: https://jenkins.io/
@@ -30,4 +30,36 @@ entries:
     urls:
     - https://apps.devstack.com/jenkins-0.1.1.tgz
     version: 0.1.1
-generated: 2016-11-09T14:52:31.922419297+02:00
+  mariadb:
+  - created: 2016-11-10T18:36:56.105125209+02:00
+    description: Chart for MariaDB
+    digest: 38786f4f6fe4fb7a2dcbc38aa0bfea72e40e4d9766e1679942af60e25b5ba9bd
+    engine: gotpl
+    home: https://mariadb.org
+    keywords:
+    - mariadb
+    - mysql
+    - database
+    - sql
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: mariadb
+    sources:
+    - https://github.com/bitnami/bitnami-docker-mariadb
+    urls:
+    - https://apps.devstack.com/mariadb-0.5.3.tgz
+    version: 0.5.3
+  openldap:
+  - created: 2016-11-10T18:36:56.105353855+02:00
+    description: A Gerrit Helm chart for Kubernetes.
+    digest: 31a88526d6288b1da8a457d4509f904643b994c8f2386330a7c82ca08f93e994
+    home: https://www.gerritcodereview.com/
+    maintainers:
+    - email: dkoval@heliostech.fr
+      name: Dimitri Koval
+    name: openldap
+    urls:
+    - https://apps.devstack.com/openldap-0.0.1.tgz
+    version: 0.0.1
+generated: 2016-11-10T18:36:56.10394532+02:00
