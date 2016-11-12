@@ -1,0 +1,4 @@
+dependencies:
+  - name: mariadb
+    version: 0.5.3
+    repository: https://apps.devstack.com

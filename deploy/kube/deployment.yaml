@@ -13,6 +13,7 @@ spec:
       containers:
       - name: dc-repo
         image: gcr.io/hc-public/devstack-charts/repo:latest
+        imagePullPolicy: Always
         command: ["./server"]
         ports:
         - containerPort: 8080

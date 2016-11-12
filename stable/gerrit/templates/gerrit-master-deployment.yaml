@@ -21,6 +21,46 @@ spec:
         release: {{.Release.Name | quote }}
         chart: "{{.Chart.Name}}-{{.Chart.Version}}"
         component: "{{.Release.Name}}-{{.Values.Master.Component}}"
+      annotations:
+        pod.alpha.kubernetes.io/init-containers: '[
+          {
+            "name": "gerrit-create-db",
+            "image": "mysql",
+            "command": ["bash", "-c", "mysql -u root -p{{.Values.mariadb.mariadbRootPassword}} -h{{template "dbmaster" .}} --verbose < /opt/gerrit/create-gerrit-db.sql"],
+            "volumeMounts": [
+              {
+                "name": "gerrit-config",
+                "mountPath": "/opt/gerrit"
+              }
+            ]
+          },
+          {
+            "name": "gerrit-init",
+            "image": "{{.Values.Master.Image}}:{{.Values.Master.ImageTag}}",
+            "command": ["java", "-jar", "{{.Values.Master.GerritWar}}", "init", "--no-auto-start", "--batch", "-d", "{{.Values.Master.GerritSite}}"],
+            "volumeMounts": [
+              {
+                "name": "gerrit-site",
+                "mountPath": "{{.Values.Master.GerritSite}}"
+              }
+            ]
+          },
+          {
+            "name": "gerrit-cp-config",
+            "image": "{{.Values.Master.Image}}:{{.Values.Master.ImageTag}}",
+            "command": ["cp", "/opt/gerrit/gerrit.config", "/opt/gerrit/secure.config", "{{.Values.Master.GerritSite}}/etc"],
+            "volumeMounts": [
+              {
+                "name": "gerrit-config",
+                "mountPath": "/opt/gerrit"
+              },
+              {
+                "name": "gerrit-site",
+                "mountPath": "{{.Values.Master.GerritSite}}"
+              }
+            ]
+          }
+        ]'
     spec:
       securityContext:
         runAsUser: 0
@@ -28,15 +68,20 @@ spec:
         - name: {{ template "fullname" . }}
           image: "{{.Values.Master.Image}}:{{.Values.Master.ImageTag}}"
           imagePullPolicy: "{{.Values.Master.ImagePullPolicy}}"
+          command:
+            - /usr/local/bin/gerrit-entrypoint.sh
           ports:
             - containerPort: {{.Values.Master.ContainerPort}}
               name: http
-            - containerPort: {{.Values.Master.SlaveListenerPort}}
-              name: slavelistener
+            - containerPort: {{.Values.Master.SshPort}}
+              name: sshd
           volumeMounts:
-            - mountPath: /var/gerrit/review_site
+            - mountPath: {{.Values.Master.GerritSite}}
               name: gerrit-site
       volumes:
+      - name: gerrit-config
+        configMap:
+          name: {{ template "fullname" . }}
       - name: gerrit-site
       {{- if .Values.Persistence.Enabled }}
         persistentVolumeClaim:
