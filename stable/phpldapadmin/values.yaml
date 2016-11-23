@@ -5,17 +5,9 @@
 
 Master:
   Name: openldap
-  Image: "osixia/openldap"
+  Image: "osixia/phpldapadmin"
   ImageTag: "latest"
   ImagePullPolicy: "Always"
-  Component: "openldap"
+  Component: "phpldapadmin"
   ServiceType: LoadBalancer
-  AdminUser: admin
-  LdapPort1: 389
-  LdapPort2: 636
-
-Persistence:
-  Enabled: true
-  StorageClass: generic
-  AccessMode: ReadWriteOnce
-  Size: 8Gi
+  ContainerPort: 80

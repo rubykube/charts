@@ -28,8 +28,50 @@ spec:
         - name: {{ template "fullname" . }}
           image: "{{.Values.Master.Image}}:{{.Values.Master.ImageTag}}"
           imagePullPolicy: "{{.Values.Master.ImagePullPolicy}}"
+          env:
+            - name: LDAP_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: ldap-admin-password
+            - name: LDAP_ORGANISATION
+              value: "Helios Technologies"
+            - name: LDAP_DOMAIN
+              value: {{ template "fullname" . }}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - bash
+                  - -c
+                  - "sleep 10; ldapadd -a -c -x -w $LDAP_ADMIN_PASSWORD -H ldapi:// -D cn={{.Values.Master.AdminUser}},dc={{ template "fullname" . }} -f /opt/ldap/groups.ldif; true"
           ports:
             - containerPort: {{.Values.Master.LdapPort1}}
               name: ldap-1
             - containerPort: {{.Values.Master.LdapPort2}}
               name: ldap-2
+          volumeMounts:
+            - name: ldap-dump
+              mountPath: /opt/ldap
+            - name: ldap-db
+              mountPath: /var/lib/ldap
+            - name: ldap-etc
+              mountPath: /etc/ldap/slapd.d
+      volumes:
+        - name: ldap-dump
+          configMap:
+            name: {{ template "fullname" . }}
+        - name: ldap-db
+        {{ if .Values.Persistence.Enabled }}
+          persistentVolumeClaim:
+            claimName: {{ template "fullname" . }}-db
+        {{ else }}
+          emptyDir: {}
+        {{ end }}
+        - name: ldap-etc
+        {{ if .Values.Persistence.Enabled }}
+          persistentVolumeClaim:
+            claimName: {{ template "fullname" . }}-etc
+        {{ else }}
+          emptyDir: {}
+        {{ end }}
