@@ -7,14 +7,16 @@ metadata:
     release: {{.Release.Name | quote }}
     chart: "{{.Chart.Name}}-{{.Chart.Version}}"
     component: "{{.Release.Name}}-{{.Values.Master.Component}}"
+  annotations:
+    "helm.sh/created": {{.Release.Time.Seconds | quote }}
 spec:
   ports:
     - port: {{.Values.Master.ServicePort}}
       name: http
       targetPort: {{.Values.Master.ContainerPort}}
-    - port: {{.Values.Master.SlaveListenerPort}}
-      targetPort: {{.Values.Master.SlaveListenerPort}}
-      name: slavelistener
+    - port: {{.Values.Master.SshPort}}
+      name: sshd
+      targetPort: {{.Values.Master.SshPort}}
   selector:
     component: "{{.Release.Name}}-{{.Values.Master.Component}}"
   type: {{.Values.Master.ServiceType}}

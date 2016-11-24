@@ -5,7 +5,7 @@
 
 Master:
   Name: gerrit-master
-  Image: "openfrontier/gerrit"
+  Image: "gcr.io/hc-public/devstack/gerrit"
   ImageTag: "latest"
   ImagePullPolicy: "Always"
   Component: "gerrit-master"
@@ -14,10 +14,13 @@ Master:
   ServicePort: 8080
   ServiceType: LoadBalancer
   ContainerPort: 8080
-  SlaveListenerPort: 50000
+  SshPort: 29418
+  GerritHome: "/var/gerrit"
+  GerritSite: "/var/gerrit/review_site"
+  GerritWar: "/var/gerrit/gerrit.war"
 
 Persistence:
-  Enabled: false
+  Enabled: true
   StorageClass: generic
-  AccessMode: ReadWriteOnce
+  AccessMode: ReadWriteMany
   Size: 8Gi

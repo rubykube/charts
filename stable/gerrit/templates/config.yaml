@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}
+data:
+  gerrit.config: |-
+    [gerrit]
+      basePath = {{.Values.Master.GerritHome}}
+    [database]
+      type = mysql
+      hostname = {{ template "dbmaster" . }}
+      port = 3306
+      database = reviewdb
+      username = gerrit2
+    [index]
+      type = LUCENE
+    [auth]
+      type = OpenID
+    [receive]
+      enableSignedPush = false
+    [sendemail]
+      smtpServer = localhost
+    [container]
+      user = root
+      war = {{.Values.Master.GerritWar}}
+    [gitweb]
+      cgi = /usr/share/gitweb/gitweb.cgi
+    [sshd]
+      listenAddress = *:{{.Values.Master.SshPort}}
+    [cache]
+      directory = cache
+  secure.config: |-
+    [database]
+      password = {{ .Values.db_password }}
+  create-gerrit-db.sql: |-
+    CREATE USER 'gerrit2'@'%' IDENTIFIED BY '{{ .Values.db_password }}';
+    CREATE DATABASE reviewdb;
+    GRANT ALL PRIVILEGES ON reviewdb.* TO 'gerrit2'@'%';
+    FLUSH PRIVILEGES;

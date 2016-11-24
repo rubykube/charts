@@ -1,2 +1,2 @@
-packages/*.tgz
+*.tgz
 server
