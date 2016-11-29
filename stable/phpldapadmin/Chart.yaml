@@ -1,0 +1,6 @@
+name: phpldapadmin
+version: 0.0.1
+description: A phpldapadmin Helm chart for Kubernetes.
+maintainers:
+  - name: Dimitri Koval
+    email: dkoval@heliostech.fr

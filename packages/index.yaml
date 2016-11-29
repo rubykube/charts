@@ -1,9 +1,9 @@
 apiVersion: v1
 entries:
   gerrit:
-  - created: 2016-11-23T16:41:16.012403652+02:00
+  - created: 2016-11-29T17:44:30.327575647+02:00
     description: A Gerrit Helm chart for Kubernetes.
-    digest: 7626b9433564ce31b3f8d4befee4add2e96390f6d26a94e22544815653617dad
+    digest: ac41db8ab7fc17335d7a16194e834a7794cab3db91671eff07cf052bdeeae5c4
     home: https://www.gerritcodereview.com/
     maintainers:
     - email: dkoval@heliostech.fr
@@ -13,7 +13,7 @@ entries:
     - https://apps.devstack.com/gerrit-0.0.1.tgz
     version: 0.0.1
   jenkins:
-  - created: 2016-11-23T16:41:16.012815889+02:00
+  - created: 2016-11-29T17:44:30.328165578+02:00
     description: A Jenkins Helm chart for Kubernetes.
     digest: 14d0921c917b4a1f751e1a3d7eb5a43b217cc14164881f835a6e42f427ef2825
     home: https://jenkins.io/
@@ -31,7 +31,7 @@ entries:
     - https://apps.devstack.com/jenkins-0.1.1.tgz
     version: 0.1.1
   mariadb:
-  - created: 2016-11-23T16:41:16.014107753+02:00
+  - created: 2016-11-29T17:44:30.32940589+02:00
     description: Chart for MariaDB
     digest: a9750b8ff011bd488b5bce251b7a4189699a5bd54e86e71662eba4e581182c68
     engine: gotpl
@@ -51,9 +51,9 @@ entries:
     - https://apps.devstack.com/mariadb-0.5.3.tgz
     version: 0.5.3
   openldap:
-  - created: 2016-11-23T16:41:16.01463107+02:00
+  - created: 2016-11-29T17:44:30.332644387+02:00
     description: A OpenLDAP Helm chart for Kubernetes.
-    digest: 5c32849c831bd38e810cb1b750339493809d341784c03a65c2722b703334fa57
+    digest: bffdfb96f49a870efb992c3c8397034ac5eee04081314e376b4cf757772fce9b
     home: http://www.openldap.org/
     maintainers:
     - email: dkoval@heliostech.fr
@@ -62,4 +62,15 @@ entries:
     urls:
     - https://apps.devstack.com/openldap-0.0.1.tgz
     version: 0.0.1
-generated: 2016-11-23T16:41:16.010607944+02:00
+  phpldapadmin:
+  - created: 2016-11-29T17:44:30.348713491+02:00
+    description: A phpldapadmin Helm chart for Kubernetes.
+    digest: 9815d302e2dc11127ca98fdcc9c857a0eb972cb0d6ecc9c6f053560ba3a1255c
+    maintainers:
+    - email: dkoval@heliostech.fr
+      name: Dimitri Koval
+    name: phpldapadmin
+    urls:
+    - https://apps.devstack.com/phpldapadmin-0.0.1.tgz
+    version: 0.0.1
+generated: 2016-11-29T17:44:30.323082463+02:00
