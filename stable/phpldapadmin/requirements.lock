@@ -1,6 +1,0 @@
-dependencies:
-- name: openldap
-  repository: https://apps.devstack.com
-  version: 0.0.1
-digest: sha256:353d322668368b317cbd02d9ce1d4e41a55eb4725fd1021a2e660764f1eb2f04
-generated: 2016-11-23T17:24:46.786211241+02:00

@@ -1,0 +1,3 @@
+global:
+  mariadbRootPassword: changeme
+  LdapAdminPassword: changeme

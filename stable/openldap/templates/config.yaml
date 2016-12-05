@@ -21,7 +21,7 @@ data:
     description: LDAP administrator
     objectclass: simpleSecurityObject
     objectclass: organizationalRole
-    userpassword: {{.Values.Master.AdminPassword}}
+    userpassword: {{.Values.global.LdapAdminPassword}}
 
     # Entry 3: ou=groups,dc={{ template "fullname" . }}
     dn: ou=groups,dc={{ template "fullname" . }}

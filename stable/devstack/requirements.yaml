@@ -1,0 +1,16 @@
+dependencies:
+  - name: openldap
+    version: 0.0.1
+    repository: https://apps.devstack.com
+  - name: phpldapadmin
+    version: 0.0.1
+    repository: https://apps.devstack.com
+  - name: mariadb
+    version: 0.5.3
+    repository: https://apps.devstack.com
+  - name: jenkins
+    version: 0.1.1
+    repository: https://apps.devstack.com
+  - name: gerrit
+    version: 0.0.1
+    repository: https://apps.devstack.com

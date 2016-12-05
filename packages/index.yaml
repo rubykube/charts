@@ -1,9 +1,18 @@
 apiVersion: v1
 entries:
+  devstack:
+  - apiVersion: v1
+    created: 2016-12-05T15:51:15.518716297+02:00
+    description: A Devstack Helm chart for Kubernetes
+    digest: 98e3766e8a0b5d1a2a79dab8965844d0d7be0b5538f720340318a30032c4e126
+    name: devstack
+    urls:
+    - https://apps.devstack.com/devstack-0.0.1.tgz
+    version: 0.0.1
   gerrit:
-  - created: 2016-11-29T17:44:30.327575647+02:00
+  - created: 2016-12-05T15:51:15.51917887+02:00
     description: A Gerrit Helm chart for Kubernetes.
-    digest: ac41db8ab7fc17335d7a16194e834a7794cab3db91671eff07cf052bdeeae5c4
+    digest: 956d19af358b42900118a2af04c5feaac7e87646c51a177a7e953cd3c47e95d9
     home: https://www.gerritcodereview.com/
     maintainers:
     - email: dkoval@heliostech.fr
@@ -13,7 +22,7 @@ entries:
     - https://apps.devstack.com/gerrit-0.0.1.tgz
     version: 0.0.1
   jenkins:
-  - created: 2016-11-29T17:44:30.328165578+02:00
+  - created: 2016-12-05T15:51:15.519636177+02:00
     description: A Jenkins Helm chart for Kubernetes.
     digest: 14d0921c917b4a1f751e1a3d7eb5a43b217cc14164881f835a6e42f427ef2825
     home: https://jenkins.io/
@@ -31,9 +40,9 @@ entries:
     - https://apps.devstack.com/jenkins-0.1.1.tgz
     version: 0.1.1
   mariadb:
-  - created: 2016-11-29T17:44:30.32940589+02:00
+  - created: 2016-12-05T15:51:15.520002925+02:00
     description: Chart for MariaDB
-    digest: a9750b8ff011bd488b5bce251b7a4189699a5bd54e86e71662eba4e581182c68
+    digest: 9d288c21994555fea12d5df417b6954a7a2b8f5220339e8f686b70f63bab4b23
     engine: gotpl
     home: https://mariadb.org
     keywords:
@@ -51,9 +60,9 @@ entries:
     - https://apps.devstack.com/mariadb-0.5.3.tgz
     version: 0.5.3
   openldap:
-  - created: 2016-11-29T17:44:30.332644387+02:00
+  - created: 2016-12-05T15:51:15.520318458+02:00
     description: A OpenLDAP Helm chart for Kubernetes.
-    digest: bffdfb96f49a870efb992c3c8397034ac5eee04081314e376b4cf757772fce9b
+    digest: 8af5e3dfd7152955639fd3b0f671ffcc490e0c58717f750378779d50884206b0
     home: http://www.openldap.org/
     maintainers:
     - email: dkoval@heliostech.fr
@@ -63,9 +72,9 @@ entries:
     - https://apps.devstack.com/openldap-0.0.1.tgz
     version: 0.0.1
   phpldapadmin:
-  - created: 2016-11-29T17:44:30.348713491+02:00
+  - created: 2016-12-05T15:51:15.520518418+02:00
     description: A phpldapadmin Helm chart for Kubernetes.
-    digest: 9815d302e2dc11127ca98fdcc9c857a0eb972cb0d6ecc9c6f053560ba3a1255c
+    digest: 2428a09297638a31f37532245401e35170f59f6b11a5aee7d782083a377276f9
     maintainers:
     - email: dkoval@heliostech.fr
       name: Dimitri Koval
@@ -73,4 +82,4 @@ entries:
     urls:
     - https://apps.devstack.com/phpldapadmin-0.0.1.tgz
     version: 0.0.1
-generated: 2016-11-29T17:44:30.323082463+02:00
+generated: 2016-12-05T15:51:15.514750511+02:00

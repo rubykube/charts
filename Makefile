@@ -22,8 +22,10 @@ clean:
 
 index:
 	cd packages;                       \
+	rm *.tgz;                          \
 	for dir in `ls ../stable`;         \
 	do                                 \
+		rm -rf ../stable/$$dir/charts;   \
 		helm dep update ../stable/$$dir; \
 		helm package ../stable/$$dir;    \
 	done;                              \
