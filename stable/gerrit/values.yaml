@@ -11,6 +11,7 @@ Master:
   Component: "gerrit-master"
   AdminUser: admin
   AdminPassword: changeme
+  DbPassword: changeme
   ServicePort: 8080
   ServiceType: LoadBalancer
   ContainerPort: 8080

@@ -26,7 +26,7 @@ spec:
           {
             "name": "gerrit-create-db",
             "image": "mysql",
-            "command": ["bash", "-c", "mysql -u root -p{{.Values.mariadb.mariadbRootPassword}} -h{{template "dbmaster" .}} --verbose < /opt/gerrit/create-gerrit-db.sql"],
+            "command": ["bash", "-c", "mysql -u root -p{{.Values.global.mariadbRootPassword}} -h{{template "dbmaster" .}} --verbose < /opt/gerrit/create-gerrit-db.sql"],
             "volumeMounts": [
               {
                 "name": "gerrit-config",

@@ -15,7 +15,12 @@ data:
     [index]
       type = LUCENE
     [auth]
-      type = OpenID
+      type = LDAP
+    [ldap]
+      server = ldap://{{ template "ldap" . }}
+      username = cn=admin,dc={{ template "ldap" . }}
+      accountBase = ou=people,dc={{ template "ldap" . }}
+      groupBase = ou=gerrit,ou=groups,dc={{ template "ldap" . }}
     [receive]
       enableSignedPush = false
     [sendemail]
@@ -31,9 +36,11 @@ data:
       directory = cache
   secure.config: |-
     [database]
-      password = {{ .Values.db_password }}
+      password = {{ .Values.Master.DbPassword }}
+    [ldap]
+      password = {{ .Values.global.LdapAdminPassword }}
   create-gerrit-db.sql: |-
-    CREATE USER 'gerrit2'@'%' IDENTIFIED BY '{{ .Values.db_password }}';
+    CREATE USER 'gerrit2'@'%' IDENTIFIED BY '{{ .Values.Master.DbPassword }}';
     CREATE DATABASE reviewdb;
     GRANT ALL PRIVILEGES ON reviewdb.* TO 'gerrit2'@'%';
     FLUSH PRIVILEGES;

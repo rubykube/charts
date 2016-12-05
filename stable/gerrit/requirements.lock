@@ -1,6 +1,0 @@
-dependencies:
-- name: mariadb
-  repository: https://apps.devstack.com
-  version: 0.5.3
-digest: sha256:fa34ee3115837d91f9ab07b940bf80c686b5dacc718668dd3dec3a49a2e1594e
-generated: 2016-11-23T14:18:47.59496557+02:00
