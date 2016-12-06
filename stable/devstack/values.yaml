@@ -1,3 +1,4 @@
 global:
   mariadbRootPassword: changeme
   LdapAdminPassword: changeme
+  domain: "devstack.work"
