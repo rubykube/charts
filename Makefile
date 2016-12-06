@@ -30,4 +30,4 @@ index:
 		helm package ../stable/$$dir;    \
 	done;                              \
 	cd ..;
-	helm repo index packages --url https://apps.devstack.com/ --merge packages/index.yaml
+	helm repo index packages --url https://apps.devstack.com/

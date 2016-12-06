@@ -1,2 +1,3 @@
 *.tgz
 server
+packages/index.yaml
