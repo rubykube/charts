@@ -14,3 +14,4 @@ spec:
     targetPort: mysql
   selector:
     app: {{ template "fullname" . }}
+  type: LoadBalancer

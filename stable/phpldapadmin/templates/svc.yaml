@@ -14,4 +14,3 @@ spec:
       targetPort: {{.Values.Master.ContainerPort}}
   selector:
     component: "{{.Release.Name}}-{{.Values.Master.Component}}"
-  type: {{.Values.Master.ServiceType}}

@@ -13,7 +13,6 @@ Master:
   AdminPassword: changeme
   DbPassword: changeme
   ServicePort: 8080
-  ServiceType: LoadBalancer
   ContainerPort: 8080
   SshPort: 29418
   GerritHome: "/var/gerrit"
