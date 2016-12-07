@@ -5,7 +5,7 @@
 
 Master:
   Name: gerrit-master
-  Image: "gcr.io/hc-public/devstack/gerrit"
+  Image: "kaigara/gerrit"
   ImageTag: "latest"
   ImagePullPolicy: "Always"
   Component: "gerrit-master"

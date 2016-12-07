@@ -5,8 +5,8 @@
 
 Master:
   Name: jenkins-master
-  Image: "gcr.io/kubernetes-charts-ci/jenkins-master-k8s"
-  ImageTag: "v0.2.0"
+  Image: "kaigara/jenkins"
+  ImageTag: "latest"
   ImagePullPolicy: "Always"
   Component: "jenkins-master"
   AdminUser: admin
