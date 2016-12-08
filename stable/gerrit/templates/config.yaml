@@ -6,6 +6,7 @@ data:
   gerrit.config: |-
     [gerrit]
       basePath = {{.Values.Master.GerritHome}}
+      canonicalWebUrl = http://gerrit.{{.Values.global.domain}}
     [database]
       type = mysql
       hostname = {{ template "dbmaster" . }}
@@ -21,6 +22,8 @@ data:
       username = cn=admin,dc={{ template "ldap" . }}
       accountBase = ou=people,dc={{ template "ldap" . }}
       groupBase = ou=gerrit,ou=groups,dc={{ template "ldap" . }}
+      accountFullName = ${givenName} ${sn}
+      accountEmailAddress = ${Email}
     [receive]
       enableSignedPush = false
     [sendemail]
