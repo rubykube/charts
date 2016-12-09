@@ -16,13 +16,21 @@ data:
 
     version: 1
 
+    Entry 1: dc={{ template "fullname" . }}
+    dn: dc={{ template "fullname" . }}
+    dc: {{ template "fullname" . }}
+    o: Helios Technologies
+    objectclass: top
+    objectclass: dcObject
+    objectclass: organization
+
     # Entry 2: cn=admin,dc={{ template "fullname" . }}
-    dn: cn={{.Values.Master.AdminUser}},dc={{ template "fullname" . }}
-    cn: {{.Values.Master.AdminUser}}
+    dn: cn=admin,dc={{ template "fullname" . }}
+    cn: admin
     description: LDAP administrator
     objectclass: simpleSecurityObject
     objectclass: organizationalRole
-    userpassword: {{.Values.global.LdapAdminPassword}}
+    userpassword: {{ .Values.global.LdapAdminPassword }}
 
     # Entry 3: ou=groups,dc={{ template "fullname" . }}
     dn: ou=groups,dc={{ template "fullname" . }}
@@ -64,25 +72,24 @@ data:
     objectclass: posixGroup
     objectclass: top
 
-    # Entry 9: ou=jira,ou=groups,dc={{ template "fullname" . }}
-    dn: ou=jira,ou=groups,dc={{ template "fullname" . }}
+    # Entry 9: ou=build,ou=groups,dc={{ template "fullname" . }}
+    dn: ou=build,ou=groups,dc={{ template "fullname" . }}
     objectclass: organizationalUnit
     objectclass: top
-    ou: jira
+    ou: build
 
-    # Entry 10: cn=administrators,ou=jira,ou=groups,dc={{ template "fullname" . }}
-    dn: cn=administrators,ou=jira,ou=groups,dc={{ template "fullname" . }}
+    # Entry 10: cn=administrators,ou=build,ou=groups,dc={{ template "fullname" . }}
+    dn: cn=administrators,ou=build,ou=groups,dc={{ template "fullname" . }}
     cn: administrators
     gidnumber: 504
-    memberuid: lbellet
+    memberuid: sysops
     objectclass: posixGroup
     objectclass: top
 
-    # Entry 11: cn=developers,ou=jira,ou=groups,dc={{ template "fullname" . }}
-    dn: cn=developers,ou=jira,ou=groups,dc={{ template "fullname" . }}
+    # Entry 11: cn=developers,ou=build,ou=groups,dc={{ template "fullname" . }}
+    dn: cn=developers,ou=build,ou=groups,dc={{ template "fullname" . }}
     cn: developers
     gidnumber: 505
-    memberuid: lbellet
     objectclass: posixGroup
     objectclass: top
 
@@ -124,3 +131,19 @@ data:
     objectclass: organizationalUnit
     objectclass: top
     ou: people
+
+    # Entry 18: cn=sysops,ou=people,dc={{ template "fullname" . }}
+    dn: cn=sysops,ou=people,dc={{ template "fullname" . }}
+    cn: sysops
+    gidnumber: 1500
+    givenname: Sysops
+    homedirectory: /home/users/sysops
+    loginshell: /bin/sh
+    mail: sysops@{{ .Values.global.domain }}
+    objectclass: inetOrgPerson
+    objectclass: posixAccount
+    objectclass: top
+    sn: {{ $domain := .Values.global.domain | split "." }}{{ $domain._0 | title }}
+    uid: sysops
+    uidnumber: 1000
+    userpassword: {{ .Values.global.SysopsPassword }}

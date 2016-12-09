@@ -1,0 +1,4 @@
+Your passwords:
+
+LDAP: {{ .Values.global.LdapAdminPassword }}
+Jenkins: {{ .Values.global.JenkinsAdminPassword }}

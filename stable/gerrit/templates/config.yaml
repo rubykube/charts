@@ -24,7 +24,7 @@ data:
       accountBase = ou=people,dc={{ template "ldap" . }}
       groupBase = ou=gerrit,ou=groups,dc={{ template "ldap" . }}
       accountFullName = ${givenName} ${sn}
-      accountEmailAddress = ${Email}
+      accountEmailAddress = ${mail}
     [receive]
       enableSignedPush = false
     [sendemail]
