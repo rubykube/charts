@@ -14,3 +14,6 @@ dependencies:
   - name: gerrit
     version: 0.0.1
     repository: https://apps.devstack.com
+  - name: registry
+    version: 0.1.0
+    repository: https://apps.devstack.com
