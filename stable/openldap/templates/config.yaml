@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  namespace: {{ .Values.global.namespace }}
   name: {{ template "fullname" . }}
 data:
   groups.ldif: |-

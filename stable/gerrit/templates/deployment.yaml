@@ -1,6 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  namespace: {{ .Values.global.namespace }}
   name: {{ template "fullname" . }}
   labels:
     heritage: {{.Release.Service | quote }}

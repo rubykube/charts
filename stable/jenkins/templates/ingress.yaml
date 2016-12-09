@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 
 metadata:
+  namespace: {{ .Values.global.namespace }}
   name: {{ template "fullname" . }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
@@ -9,7 +10,7 @@ metadata:
 
 spec:
   rules:
-  - host: "jenkins.{{ .Values.global.domain }}"
+  - host: "build.{{ .Values.global.domain }}"
     http:
       paths:
       - path: /
@@ -20,4 +21,4 @@ spec:
   tls:
     - secretName: tls-helios-webfront
       hosts:
-        - "jenkins.{{ .Values.global.domain }}"
+        - "build.{{ .Values.global.domain }}"

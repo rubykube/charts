@@ -4,3 +4,4 @@ global:
   JenkinsAdminPassword: changeme
   domain: "devstack.work"
   organisation: "Helios Technologies"
+  namespace: devstack-devel
