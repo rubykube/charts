@@ -5,4 +5,3 @@ global:
   SysopsPassword: changeme
   domain: "devstack.work"
   organisation: "Helios Technologies"
-  namespace: devstack-devel
