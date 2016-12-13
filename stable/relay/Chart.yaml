@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Email relay chart for DevStack
+name: relay
+version: 0.1.0
