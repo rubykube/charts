@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: relay
+data:
+  relay.yaml: |-
+    hostname: {{ template "fullname" . }}
+    fqdn: {{ template "fullname" . }}.{{ .Values.global.domain }}

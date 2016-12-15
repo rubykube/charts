@@ -17,5 +17,13 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+        volumeMounts:
+        - name: relay
+          mountPath: /etc/kaigara/metadata
+
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+      volumes:
+        - name: relay
+          configMap:
+            name: relay

@@ -21,10 +21,10 @@ clean:
 	docker rmi -f $(NAME):$(VERSION)
 
 index:
-	cd packages;                       \
-	rm *.tgz;                          \
-	for dir in `ls ../stable`;         \
-	do                                 \
+	cd packages;                        \
+	find . -name '*.tgz' -exec rm {} \;;\
+	for dir in `ls ../stable`;          \
+	do                                  \
 		rm -rf ../stable/$$dir/charts;   \
 		helm dep update ../stable/$$dir; \
 		helm package ../stable/$$dir;    \
