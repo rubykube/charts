@@ -53,6 +53,16 @@ spec:
           env:
             - name: JAVA_OPTS
               value: "{{ default "" .Values.Master.JavaOpts}}"
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: jenkins-admin-password
+            - name: ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: jenkins-admin-user
           ports:
             - containerPort: {{.Values.Master.ContainerPort}}
               name: http

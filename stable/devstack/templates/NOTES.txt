@@ -2,3 +2,26 @@ Your passwords:
 
 LDAP: {{ .Values.global.LdapAdminPassword }}
 Jenkins: {{ .Values.global.JenkinsAdminPassword }}
+Sysops user: {{ .Values.global.SysopsPassword }}
+
+-----
+
+Configure jenkins with ldap instructions:
+
+1. Go to build.{{ .Values.global.domain }}. Log in as user 'admin' (password: '{{ .Values.global.JenkinsAdminPassword }}')
+   Go to Manage Jenkins -> Configure Global Security.
+
+2. In 'Security Realm' select LDAP. Click on 'Advanced...' button.
+
+3. Fill the form:
+  Server            | {{ cat .Release.Name "-" "openldap" | nospace | trunc 24 }}
+  -------------------------------------------------------------------
+  root DN           | dc={{ cat .Release.Name "-" "openldap" | nospace | trunc 24 }}
+  -------------------------------------------------------------------
+  User search base  | ou=people
+  -------------------------------------------------------------------
+  manager DN        | cn=admin,dc={{ cat .Release.Name "-" "openldap" | nospace | trunc 24 }}
+  -------------------------------------------------------------------
+  Manager Password  | {{ .Values.global.LdapAdminPassword }}
+
+4. Click 'Save'. Now you can log in as any user from LDAP.
