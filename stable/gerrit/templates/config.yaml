@@ -39,11 +39,11 @@ data:
       directory = cache
   secure.config: |-
     [database]
-      password = {{ .Values.Master.DbPassword }}
+      password = {{ .Values.global.gerritDbPassword }}
     [ldap]
       password = {{ .Values.global.LdapAdminPassword }}
   create-gerrit-db.sql: |-
-    CREATE USER 'gerrit2'@'%' IDENTIFIED BY '{{ .Values.Master.DbPassword }}';
+    CREATE USER 'gerrit2'@'%' IDENTIFIED BY '{{ .Values.global.gerritDbPassword }}';
     CREATE DATABASE reviewdb;
     GRANT ALL PRIVILEGES ON reviewdb.* TO 'gerrit2'@'%';
     FLUSH PRIVILEGES;

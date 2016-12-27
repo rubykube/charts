@@ -18,6 +18,6 @@ spec:
           servicePort: 80
 
   tls:
-    - secretName: tls-helios-webfront
+    - secretName:  "tls-ldap.{{ .Values.global.domain }}"
       hosts:
         - "ldap.{{ .Values.global.domain }}"

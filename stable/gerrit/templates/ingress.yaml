@@ -18,6 +18,6 @@ spec:
           servicePort: 8080
 
   tls:
-    - secretName: tls-helios-webfront
+    - secretName:  "tls-gerrit.{{ .Values.global.domain }}"
       hosts:
         - "gerrit.{{ .Values.global.domain }}"

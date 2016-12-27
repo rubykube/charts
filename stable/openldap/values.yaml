@@ -9,7 +9,7 @@ Master:
   ImageTag: "latest"
   ImagePullPolicy: "Always"
   Component: "openldap"
-  ServiceType: LoadBalancer
+  ServiceType: ClusterIP
   AdminUser: admin
   LdapPort1: 389
   LdapPort2: 636

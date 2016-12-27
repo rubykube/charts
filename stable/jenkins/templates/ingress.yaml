@@ -18,6 +18,6 @@ spec:
           servicePort: 8080
 
   tls:
-    - secretName: tls-helios-webfront
+    - secretName: "tls-build.{{ .Values.global.domain }}"
       hosts:
         - "build.{{ .Values.global.domain }}"

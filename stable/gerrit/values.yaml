@@ -10,8 +10,6 @@ Master:
   ImagePullPolicy: "Always"
   Component: "gerrit-master"
   AdminUser: admin
-  AdminPassword: changeme
-  DbPassword: changeme
   ServicePort: 8080
   ContainerPort: 8080
   SshPort: 29418
