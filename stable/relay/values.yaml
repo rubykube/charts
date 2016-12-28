@@ -7,7 +7,7 @@ image:
   tag: latest
   pullPolicy: Always
 service:
-  name: nginx
+  name: relay
   type: ClusterIP
   externalPort: 25
   internalPort: 25
@@ -20,3 +20,9 @@ resources:
     memory: 128Mi
 global:
   domain: "example.com"
+  emails:
+    defaultUser: "server"
+    relayHost: "[smtp.sendgrid.net]:2525"
+    sendgrid:
+      username: "apikey"
+      password:

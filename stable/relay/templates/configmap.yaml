@@ -5,5 +5,11 @@ metadata:
   name: relay
 data:
   relay.yaml: |-
-    hostname: {{ template "fullname" . }}
-    fqdn: {{ template "fullname" . }}.{{ .Values.global.domain }}
+    hostname: relay
+    fqdn: relay.{{ .Values.global.domain }}
+    defaultUser: {{ .Values.global.emails.defaultUser }}
+    relayHost: {{ .Values.global.emails.relayHost }}
+    sendgrid:
+      username: {{ .Values.global.emails.sendgrid.username }}
+      password: {{ .Values.global.emails.sendgrid.password }}
+    
