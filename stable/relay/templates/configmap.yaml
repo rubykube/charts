@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: relay
+  name: {{ template "fullname" . }}
 data:
   relay.yaml: |-
-    hostname: relay
-    fqdn: relay.{{ .Values.global.domain }}
-    defaultUser: {{ .Values.global.emails.defaultUser }}
-    relayHost: {{ .Values.global.emails.relayHost }}
+    hostname: "relay"
+    fqdn: "relay.{{ .Values.global.domain }}"
+    defaultUser: {{ .Values.global.relayDefaultUser | quote }}
+    relayHost: {{ .Values.global.relayHost | quote }}
     sendgrid:
-      username: {{ .Values.global.emails.sendgrid.username }}
-      password: {{ .Values.global.emails.sendgrid.password }}
+      username: {{ .Values.global.relaySendgridUsername | quote }}
+      password: {{ .Values.global.relaySendgridPassword | quote }}
     

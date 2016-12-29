@@ -20,9 +20,7 @@ resources:
     memory: 128Mi
 global:
   domain: "example.com"
-  emails:
-    defaultUser: "server"
-    relayHost: "[smtp.sendgrid.net]:2525"
-    sendgrid:
-      username: "apikey"
-      password:
+  relayHost: "[smtp.sendgrid.net]:2525"
+  relayDefaultUser: "server"
+  relaySendgridUsername:
+  relaySendgridPassword: 

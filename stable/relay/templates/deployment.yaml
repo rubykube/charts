@@ -18,12 +18,12 @@ spec:
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         volumeMounts:
-        - name: relay
+        - name: relay-config
           mountPath: /etc/kaigara/metadata
 
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
-        - name: relay
+        - name: relay-config
           configMap:
-            name: relay
+            name: {{ template "fullname" . }}
