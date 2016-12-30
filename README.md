@@ -9,9 +9,24 @@ Adding this repo to helm:
 
  # check for it
  $ helm repo list
+ 
+ # Download and example value and customize it with a domain name
+ $ curl -L 'https://git.io/vMLaM' > values.yml
+ 
+ # Instanciate the entire stack with 
+ $ helm install devstack/devstack -f values.yaml
 ```
 
-### Installing a chart
+
+### Configure your DNS or hostname with the following records
+
+Point *.yourdomain.co into the Ingress Controller IP.
+
+* gerrit.yourdomain.co
+* build.yourdomain.co
+* ldap.yourdomain.co
+
+### Installing a single chart
 
 ```bash
  # list all charts
