@@ -9,7 +9,7 @@ metadata:
 
 spec:
   rules:
-  - host: "build.{{ .Values.global.domain }}"
+  - host: "build.{{ .Values.devstack.domain }}"
     http:
       paths:
       - path: /
@@ -18,6 +18,6 @@ spec:
           servicePort: 8080
 
   tls:
-    - secretName: "tls-build.{{ .Values.global.domain }}"
+    - secretName: "tls-build.{{ .Values.devstack.domain }}"
       hosts:
-        - "build.{{ .Values.global.domain }}"
+        - "build.{{ .Values.devstack.domain }}"

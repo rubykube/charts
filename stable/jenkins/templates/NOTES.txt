@@ -1,0 +1,20 @@
+1. Get your '{{ .Values.Master.AdminUser }}' user password by running:
+
+  kubectl get secret --namespace {{ .Release.Namespace }} {{ template "fullname" . }} -o yaml | grep 'jenkins-admin-password' | cut -f4 -d' ' | base64 --decode
+
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+
+https://build.{{ .Values.devstack.domain}}/
+
+3. Login with the password from step 1 and the username: {{ .Values.Master.AdminUser }}
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+{{- if .Values.Persistence.Enabled }}
+{{- else }}
+#################################################################################
+######   WARNING: Persistence is disabled!!! You will lose your data when   #####
+######            the Jenkins pod is terminated.                            #####
+#################################################################################
+{{- end }}
