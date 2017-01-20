@@ -1,7 +1,23 @@
 global:
-  mariadbRootPassword: changeme
-  LdapAdminPassword: changeme
-  JenkinsAdminPassword: changeme
-  SysopsPassword: changeme
-  domain: "devstack.work"
   organisation: "Helios Technologies"
+  mariadbRootPassword: "hahshahPeFu7ahth"
+  gerritAdminPassword: "thuph6eC2gurae4i"
+  gerritDbPassword: "vee8thoosh9ooJee"
+  LdapAdminPassword: "iepah4aqueisie6F"
+  domain: "example.com"
+  relayHost: "[smtp.sendgrid.net]:2525"
+  relayDefaultUser: "server"
+  relaySendgridUsername: "apikey"
+  relaySendgridPassword: "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"
+
+gerrit:
+  image:
+    tag: dev
+    pullPolicy: IfNotPresent
+  database:
+    password: "Za0vu5Ceix5foo2U"
+
+relay:
+  image:
+    tag: dev
+    pullPolicy: IfNotPresent

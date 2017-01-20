@@ -16,5 +16,9 @@ We truncate at 24 chars because some Kubernetes name fields are limited to this 
 {{ end }}
 
 {{- define "ldap" -}}
-{{- printf "%s-%s" .Release.Name "openldap" | trunc 24 -}}
+{{- printf "ldap" -}}
+{{- end -}}
+
+{{- define "ldapadmin" -}}
+{{- printf "ldapadmin" -}}
 {{- end -}}

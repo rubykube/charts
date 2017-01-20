@@ -1,3 +1,4 @@
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -10,6 +11,31 @@ spec:
     metadata:
       labels:
         app: {{ template "fullname" . }}
+      annotations:
+        pod.beta.kubernetes.io/init-containers: '[
+          {
+            "name": "gerrit-create-db",
+            "image": "mysql",
+            "command": ["bash", "-c", "mysql -u root -p{{ .Values.global.mariadbRootPassword }} -h{{ template "database" . }} --verbose < /opt/gerrit/create-gerrit-db.sql"],
+            "volumeMounts": [
+              {
+                "name": "gerrit-config",
+                "mountPath": "/opt/gerrit"
+              }
+            ]
+          },
+          {
+          "name": "gerrit-init",
+          "image": "{{ .Values.image.repository }}:{{ .Values.image.tag }}",
+          "command": ["java", "-jar", "/var/gerrit/gerrit.war", "init", "--no-auto-start", "--batch", "-d", "/var/gerrit/review_site"],
+          "volumeMounts": [
+            {
+              "name": "gerrit-site",
+              "mountPath": "/var/gerrit/review_site"
+            }
+          ]
+        }
+      ]'
     spec:
       containers:
       - name: {{ .Chart.Name }}
@@ -20,20 +46,21 @@ spec:
           name: http
         - containerPort: {{ .Values.service.ssh.internalPort }}
           name: ssh
-#        livenessProbe:
-#          httpGet:
-#            path: /
-#            port: {{ .Values.service.http.internalPort }}
-#        readinessProbe:
-#          httpGet:
-#            path: /
-#            port: {{ .Values.service.http.internalPort }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
           - mountPath: "/etc/kaigara/metadata/"
             name: gerrit-config
+          - mountPath: "/var/gerrit/review_site"
+            name: gerrit-site
       volumes:
       - name: gerrit-config
         configMap:
           name: {{ template "fullname" . }}
+      - name: gerrit-site
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ template "fullname" . }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}

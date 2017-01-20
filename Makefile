@@ -21,13 +21,12 @@ clean:
 	docker rmi -f $(NAME):$(VERSION)
 
 index:
-	cd packages;                        \
-	find . -name '*.tgz' -exec rm {} \;;\
-	for dir in `ls ../stable`;          \
-	do                                  \
-		rm -rf ../stable/$$dir/charts;   \
-		helm dep update ../stable/$$dir; \
-		helm package ../stable/$$dir;    \
-	done;                              \
-	cd ..;
+	set -x						;\
+	cd packages					;\
+	find . -name '*.tgz' -exec rm {} \;		;\
+	for dir in `ls ../stable`			;\
+	do                                  		 \
+		rm -rf ../stable/$$dir/charts		;\
+		helm package ../stable/$$dir		;\
+	done
 	helm repo index packages --url https://apps.devstack.com/

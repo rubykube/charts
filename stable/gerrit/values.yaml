@@ -1,5 +1,3 @@
-# Default values for gerrit.
-# This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 #
 replicaCount: 1
@@ -22,15 +20,18 @@ resources:
   requests:
     cpu: 1
     memory: 512Mi
-domain: devstack.local
-config: |-
-  gerrit:
-    basePath: "/var/gerrit/review_site/git"
-    canonicalWebUrl: "http://localhost:8080/"
-  auth:
-    type: DEVELOPMENT_BECOME_ANY_ACCOUNT
-  database:
-    type: h2
-    database: "/var/gerrit/review_site/db/ReviewDB"
-  sendemail:
-    smtpServer: localhost
+persistence:
+  enabled: false
+  storageClass: generic
+  accessMode: ReadWriteMany
+  size: 8Gi
+
+basePath: "/var/gerrit/review_site/git"
+database:
+  database: "reviewdb"
+  username: "gerrit"
+  password: "changeme"
+global:
+  domain: devstack.local
+  mariadbRootPassword: changeme
+  LdapAdminPassword: changeme

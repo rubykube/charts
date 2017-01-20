@@ -1,0 +1,13 @@
+---
+image:
+  tag: dev
+  pullPolicy: IfNotPresent
+resources:
+  limits:
+    cpu: 250m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 512Mi
+database:
+  password: "oiPie4Dah1Hiesho"

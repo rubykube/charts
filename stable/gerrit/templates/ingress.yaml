@@ -1,23 +1,24 @@
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ template "gerrit" . }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
 
 spec:
   rules:
-  - host: "gerrit.{{ .Values.domain }}"
+  - host: "gerrit.{{ .Values.global.domain }}"
     http:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "fullname" . }}
+          serviceName: {{ template "gerrit" . }}
           servicePort: 8080
 
   tls:
-    - secretName:  "tls-gerrit.{{ .Values.domain }}"
+    - secretName:  "tls-gerrit.{{ .Values.global.domain }}"
       hosts:
-        - "gerrit.{{ .Values.domain }}"
+        - "gerrit.{{ .Values.global.domain }}"

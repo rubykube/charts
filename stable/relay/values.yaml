@@ -4,8 +4,8 @@
 replicaCount: 1
 image:
   repository: kaigara/postfix
-  tag: latest
-  pullPolicy: Always
+  tag: dev
+  pullPolicy: IfNotPresent
 service:
   name: relay
   type: ClusterIP
