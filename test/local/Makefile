@@ -1,6 +1,6 @@
 TEST_DIR   := $(CURDIR)
 CHARTS_DIR := $(CURDIR)/../../stable
-CHARTS     ?= mariadb openldap relay gerrit jenkins
+CHARTS     ?= mariadb openldap relay gerrit jenkins registry
 HELM_ARGS  ?= --debug
 NAMESPACE  ?= test-local
 
