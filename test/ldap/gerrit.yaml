@@ -2,6 +2,11 @@
 image:
   tag: dev
   pullPolicy: IfNotPresent
+auth:
+  type: ldap
+  server: ldap
+  dc: ldap
+  password: "Ju6uromie6deecoo"
 resources:
 database:
   password: "oiPie4Dah1Hiesho"

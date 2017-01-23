@@ -4,7 +4,7 @@ global:
   gerritAdminPassword: "Iose0iew2aew5eeg"
   gerritDbPassword: "chee8ineiChahghi"
   LdapAdminPassword: "Ju6uromie6deecoo"
-  domain: "example.com"
+  domain: "test-ldap.local"
   relayHost: "[smtp.sendgrid.net]:2525"
   relayDefaultUser: "server"
   relaySendgridUsername: ""

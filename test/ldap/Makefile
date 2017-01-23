@@ -1,8 +1,8 @@
 TEST_DIR   := $(CURDIR)
 CHARTS_DIR := $(CURDIR)/../../stable
-CHARTS     ?= mariadb openldap relay gerrit jenkins registry
+CHARTS     ?= mariadb openldap phpldapadmin relay gerrit jenkins registry
 HELM_ARGS  ?= --debug
-NAMESPACE  ?= test-local
+NAMESPACE  ?= test-ldap
 
 install:
 	@for chart in $(CHARTS);do							 \
@@ -13,7 +13,7 @@ install:
 	done
 
 delete:
-	@for chart in $(CHARTS);do							 \
+	@-for chart in $(CHARTS);do							 \
 	  helm delete $(NAMESPACE)-$${chart}			 			;\
 	done
 

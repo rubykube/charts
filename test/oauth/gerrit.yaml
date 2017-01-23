@@ -1,0 +1,9 @@
+---
+image:
+  tag: dev
+  pullPolicy: IfNotPresent
+resources:
+auth:
+  type: OPENID
+database:
+  password: "oiPie4Dah1Hiesho"

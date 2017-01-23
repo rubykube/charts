@@ -1,0 +1,4 @@
+---
+image:
+  tag: dev
+  pullPolicy: IfNotPresent
