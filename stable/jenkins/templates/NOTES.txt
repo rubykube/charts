@@ -4,7 +4,7 @@
 
 2. Get the Jenkins URL to visit by running these commands in the same shell:
 
-https://build.{{ .Values.devstack.domain}}/
+https://build.{{ .Values.global.domain}}/
 
 3. Login with the password from step 1 and the username: {{ .Values.Master.AdminUser }}
 
