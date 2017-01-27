@@ -2,3 +2,4 @@
 server
 packages/index.yaml
 *.lock
+.idea/

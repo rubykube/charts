@@ -9,7 +9,7 @@ global:
 Master:
   Name: jenkins-master
   Image: "kaigara/jenkins"
-  ImageTag: "0.0.2"
+  ImageTag: "1.0.0"
   ImagePullPolicy: "IfNotPresent"
   Component: "jenkins-master"
   AdminUser: admin
