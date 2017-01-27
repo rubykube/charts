@@ -8,10 +8,7 @@ data:
       basePath: {{ .Values.basePath }}
       canonicalWebUrl: http://gerrit.{{.Values.global.domain}}
     auth:
-      type: ldap
-      server: {{ template "ldap" . }}
-      dc: {{ template "ldap" . }}
-      password: {{ .Values.global.LdapAdminPassword }}
+{{ toYaml .Values.auth | indent 6 }}
     smtp:
       server: {{ template "relay" . }}
     database:

@@ -14,7 +14,7 @@ spec:
       annotations:
         pod.beta.kubernetes.io/init-containers: '[
           {
-            "name": "gerrit-create-db",
+            "name": "init-db",
             "image": "mysql",
             "command": ["bash", "-c", "mysql -u root -p{{ .Values.global.mariadbRootPassword }} -h{{ template "database" . }} --verbose < /opt/gerrit/create-gerrit-db.sql"],
             "volumeMounts": [
@@ -23,24 +23,14 @@ spec:
                 "mountPath": "/opt/gerrit"
               }
             ]
-          },
-          {
-          "name": "gerrit-init",
-          "image": "{{ .Values.image.repository }}:{{ .Values.image.tag }}",
-          "command": ["java", "-jar", "/var/gerrit/gerrit.war", "init", "--no-auto-start", "--batch", "-d", "/var/gerrit/review_site"],
-          "volumeMounts": [
-            {
-              "name": "gerrit-site",
-              "mountPath": "/var/gerrit/review_site"
-            }
-          ]
-        }
+          }
       ]'
     spec:
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["kaigara", "start", "gerrit-start.sh"]
         ports:
         - containerPort: {{ .Values.service.http.internalPort }}
           name: http
@@ -49,10 +39,10 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
-          - mountPath: "/etc/kaigara/metadata/"
-            name: gerrit-config
           - mountPath: "/var/gerrit/review_site"
             name: gerrit-site
+          - mountPath: "/etc/kaigara/metadata"
+            name: gerrit-config
       volumes:
       - name: gerrit-config
         configMap:

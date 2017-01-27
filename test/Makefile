@@ -5,3 +5,7 @@ install:
 delete:
 	$(MAKE) -C oauth delete
 	$(MAKE) -C ldap delete
+
+test:
+	bundle install
+	bundle exec rspec

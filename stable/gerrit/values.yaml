@@ -25,7 +25,10 @@ persistence:
   storageClass: generic
   accessMode: ReadWriteMany
   size: 8Gi
-
+auth:
+  type: ldap
+  server: ldap
+  dc: ldap
 basePath: "/var/gerrit/review_site/git"
 database:
   database: "reviewdb"
