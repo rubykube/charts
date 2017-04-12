@@ -1,0 +1,7 @@
+name: jira
+home: https://www.atlassian.com/software/jira
+version: 0.1.0
+description: A Jira Helm chart for Kubernetes.
+maintainers:
+  - name: Dimitri Koval
+    email: dkoval@heliostech.fr
