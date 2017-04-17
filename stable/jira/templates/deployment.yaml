@@ -26,30 +26,45 @@ spec:
           {
             "name": "jira-create-db",
             "image": "mysql",
-            "command": ["bash", "-c", "mysql -u root -p{{.Values.global.mariadbRootPassword}} -h{{template "dbmaster" .}} --verbose < /opt/jira/create-jira-db.sql"],
+            "imagePullPolicy": "Always",
+            "command": ["bash", "-c", "mysql -u root -p{{.Values.global.mariadbRootPassword}} -h{{template "database" .}} --verbose < /opt/jira/create-jira-db.sql"],
             "volumeMounts": [
               {
                 "name": "jira-config",
                 "mountPath": "/opt/jira"
               }
             ]
+          },
+          {
+            "name": "jira-init",
+            "image": "busybox",
+            "imagePullPolicy": "IfNotPresent",
+            "command": ["sh", "-c", "chown -R 1000:1000 {{.Values.Master.JiraHome}}"],
+            "volumeMounts": [
+              {
+                "name": "jira-home",
+                "mountPath": "{{.Values.Master.JiraHome}}"
+              }
+            ]
           }
         ]'
     spec:
-      securityContext:
-        runAsUser: 0
       containers:
         - name: {{ template "fullname" . }}
           image: "{{.Values.Master.Image}}:{{.Values.Master.ImageTag}}"
           imagePullPolicy: "{{.Values.Master.ImagePullPolicy}}"
           env:
             - name: JIRA_DATABASE_URL
-              value: mysql://jira@{{ template "dbmaster" .}}/jiradb
+              value: mysql://jira@{{ template "database" .}}/jiradb
             - name: JIRA_DB_PASSWORD
               value: {{ .Values.global.jiraDbPassword }}
           ports:
             - containerPort: {{.Values.Master.ContainerPort}}
               name: http
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "800Mi"
           volumeMounts:
             - mountPath: {{.Values.Master.JiraHome}}
               name: jira-home

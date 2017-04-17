@@ -15,7 +15,11 @@ We truncate at 24 chars because some Kubernetes name fields are limited to this 
 {{ printf "%s-%s" .Release.Name $name | trunc 24 -}}
 {{ end }}
 
-{{- define "dbmaster" -}}
-{{- printf "%s-%s" .Release.Name "mariadb" | trunc 24 -}}
+{{- define "jira" -}}
+{{- printf "jira" -}}
+{{- end -}}
+
+{{- define "database" -}}
+{{- printf "database" -}}
 {{- end -}}
 

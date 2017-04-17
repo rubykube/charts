@@ -4,7 +4,7 @@ metadata:
   name: {{ template "fullname" . }}
 data:
   create-jira-db.sql: |-
+    DROP USER IF EXISTS 'jira'@'%';
     CREATE USER 'jira'@'%' IDENTIFIED BY '{{ .Values.global.jiraDbPassword }}';
-    CREATE DATABASE jiradb;
+    CREATE DATABASE IF NOT EXISTS jiradb;
     GRANT ALL PRIVILEGES ON jiradb.* TO 'jira'@'%';
-    FLUSH PRIVILEGES;
