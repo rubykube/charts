@@ -1,0 +1,20 @@
+# Default values for jira.
+# This is a YAML-formatted file.
+# Declare name/value pairs to be passed into your templates.
+# name: value
+
+Master:
+  Name: "jira-master"
+  Image: "blacklabelops/jira"
+  ImageTag: "latest"
+  ImagePullPolicy: "Always"
+  Component: "jira-master"
+  ServicePort: 8080
+  ContainerPort: 8080
+  JiraHome: "/var/atlassian/jira"
+
+Persistence:
+  Enabled: true
+  StorageClass: generic
+  AccessMode: ReadWriteMany
+  Size: 8Gi
