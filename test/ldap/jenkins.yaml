@@ -1,0 +1,5 @@
+---
+Master:
+  ImageTag: "dev"
+Persistence:
+  Enabled: false

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}
+data:
+  config.yaml: |-
+    gerrit:
+      basePath: {{ .Values.basePath }}
+      canonicalWebUrl: http://gerrit.{{.Values.global.domain}}
+    auth:
+{{ toYaml .Values.auth | indent 6 }}
+    smtp:
+      server: {{ template "relay" . }}
+    database:
+      type: mysql
+      hostname: {{ template "database" . }}
+      port: 3306
+      database: {{ .Values.database.database }}
+      username: {{ .Values.database.username }}
+      password: {{ .Values.database.password }}
+    sendemail:
+      smtpServer: {{ template "relay" . }}
+  create-gerrit-db.sql: |-
+    DROP USER IF EXISTS '{{ .Values.database.username }}'@'%';
+    CREATE USER '{{ .Values.database.username }}'@'%' IDENTIFIED BY '{{ .Values.database.password }}';
+    CREATE DATABASE IF NOT EXISTS {{ .Values.database.database }};
+    GRANT ALL PRIVILEGES ON {{ .Values.database.database }}.* TO '{{ .Values.database.username }}'@'%';

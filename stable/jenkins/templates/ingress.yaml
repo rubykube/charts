@@ -2,22 +2,22 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ template "build" . }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
 
 spec:
   rules:
-  - host: "build.{{ .Values.devstack.domain }}"
+  - host: "build.{{ .Values.global.domain }}"
     http:
       paths:
       - path: /
         backend:
-          serviceName: {{ template "fullname" . }}
-          servicePort: 8080
+          serviceName: {{ template "build" . }}
+          servicePort: {{ .Values.Master.ServicePort }}
 
   tls:
-    - secretName: "tls-build.{{ .Values.devstack.domain }}"
+    - secretName: "tls-build.{{ .Values.global.domain }}"
       hosts:
-        - "build.{{ .Values.devstack.domain }}"
+        - "build.{{ .Values.global.domain }}"

@@ -1,0 +1,33 @@
+development:
+  gerrit:
+    basePath: "/var/gerrit/review_site/git"
+    canonicalWebUrl: "http://localhost:8080/"
+  auth:
+    type: DEVELOPMENT_BECOME_ANY_ACCOUNT
+  database:
+    type: h2
+    database: "/var/gerrit/review_site/db/ReviewDB"
+  sendemail:
+    smtpServer: localhost
+
+production:
+  gerrit:
+    basePath: "/var/gerrit"
+    canonicalWebUrl: "http://gerrit.internal"
+  auth:
+    type: LDAP
+  database:
+    type: mysql
+    hostname: dbmaster
+    port: 3306
+    database: reviewdb
+    username: gerrit
+  ldap:
+    server: ldap://directory.internal
+    username: cn=admin,dc=directory
+    accountBase: ou=people,dc=directory
+    groupBase: ou=gerrit,ou=groups,dc=directory
+    accountFullName: ${givenName} ${sn}
+    accountEmailAddress: ${mail}
+  sendemail:
+    smtpServer: mailstack.internal

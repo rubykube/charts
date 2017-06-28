@@ -1,24 +1,40 @@
-# Default values for gerrit.
-# This is a YAML-formatted file.
-# Declare name/value pairs to be passed into your templates.
-# name: value
-
-Master:
-  Name: gerrit-master
-  Image: "kaigara/gerrit"
-  ImageTag: "latest"
-  ImagePullPolicy: "Always"
-  Component: "gerrit-master"
-  AdminUser: admin
-  ServicePort: 8080
-  ContainerPort: 8080
-  SshPort: 29418
-  GerritHome: "/var/gerrit"
-  GerritSite: "/var/gerrit/review_site"
-  GerritWar: "/var/gerrit/gerrit.war"
-
-Persistence:
-  Enabled: true
-  StorageClass: generic
-  AccessMode: ReadWriteMany
-  Size: 8Gi
+# Declare variables to be passed into your templates.
+#
+replicaCount: 1
+image:
+  repository: kaigara/gerrit
+  tag: 0.0.5
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  http:
+    externalPort: 8080
+    internalPort: 8080
+  ssh:
+    externalPort: 29418
+    internalPort: 29418
+resources:
+  limits:
+    cpu: 1
+    memory: 512Mi
+  requests:
+    cpu: 1
+    memory: 512Mi
+persistence:
+  enabled: false
+  storageClass: generic
+  accessMode: ReadWriteMany
+  size: 8Gi
+auth:
+  type: ldap
+  server: ldap
+  dc: ldap
+basePath: "/var/gerrit/review_site/git"
+database:
+  database: "reviewdb"
+  username: "gerrit"
+  password: "changeme"
+global:
+  domain: devstack.local
+  mariadbRootPassword: changeme
+  LdapAdminPassword: changeme

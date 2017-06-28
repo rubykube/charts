@@ -1,0 +1,11 @@
+global:
+  organisation: "Helios Technologies"
+  mariadbRootPassword: "Ou0cingee1Ec0Aip"
+  gerritAdminPassword: "Iose0iew2aew5eeg"
+  gerritDbPassword: "chee8ineiChahghi"
+  LdapAdminPassword: "Ju6uromie6deecoo"
+  domain: "test-ldap.local"
+  relayHost: "[smtp.sendgrid.net]:2525"
+  relayDefaultUser: "server"
+  relaySendgridUsername: ""
+  relaySendgridPassword: ""
